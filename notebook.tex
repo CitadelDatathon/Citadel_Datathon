@@ -1,0 +1,1141 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{report}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{final-report}{%
+\section{Final Report}\label{final-report}}
+
+    \hypertarget{executive-summary}{%
+\subsection{Executive Summary}\label{executive-summary}}
+
+    \hypertarget{in-recent-years-we-have-seen-an-upward-trend-of-environmental-issues-for-example-drought.-even-in-developed-countries-as-us-it-has-become-increasingly-important-to-find-ways-of-minimizing-its-effects.-analytical-methods-have-been-developed-in-order-to-identify-factors-that-may-contribute-to-drought.-however-rather-than-analyzing-data-about-the-united-states-as-a-whole-we-have-found-statistically-significant-results-from-analyzing-data-that-is-specific-to-each-county-such-as-the-countys-working-population-distribution-across-industries.}{%
+\subsubsection{In recent years, we have seen an upward trend of
+environmental issues, for example, drought. Even in developed countries
+as US, it has become increasingly important to find ways of minimizing
+its effects. Analytical methods have been developed in order to identify
+factors that may contribute to drought. However, rather than analyzing
+data about the United States as a whole, we have found statistically
+significant results from analyzing data that is specific to each county
+(such as the county's working population distribution across
+industries).}\label{in-recent-years-we-have-seen-an-upward-trend-of-environmental-issues-for-example-drought.-even-in-developed-countries-as-us-it-has-become-increasingly-important-to-find-ways-of-minimizing-its-effects.-analytical-methods-have-been-developed-in-order-to-identify-factors-that-may-contribute-to-drought.-however-rather-than-analyzing-data-about-the-united-states-as-a-whole-we-have-found-statistically-significant-results-from-analyzing-data-that-is-specific-to-each-county-such-as-the-countys-working-population-distribution-across-industries.}}
+
+    \hypertarget{question-given-historical-factors-of-chemical-concentrations-in-local-water-systems-drought-severities-county-earnings-across-different-industries-and-the-countys-working-population-distribution-across-industries-what-is-the-likely-distribution-of-the-population-affected-by-differing-severities-of-drought-in-the-upcoming-years}{%
+\subsubsection{Question: Given historical factors of chemical
+concentrations in local water systems, drought severities, county
+earnings across different industries, and the county's working
+population distribution across industries, what is the likely
+distribution of the population affected by differing severities of
+drought in the upcoming
+years?}\label{question-given-historical-factors-of-chemical-concentrations-in-local-water-systems-drought-severities-county-earnings-across-different-industries-and-the-countys-working-population-distribution-across-industries-what-is-the-likely-distribution-of-the-population-affected-by-differing-severities-of-drought-in-the-upcoming-years}}
+
+    \hypertarget{why-this-quetion-is-important}{%
+\subsection{Why this quetion is
+important:}\label{why-this-quetion-is-important}}
+
+\hypertarget{being-able-to-reasonably-estimate-the-severity-of-drought-for-a-given-year-for-each-county-can-help-the-counties-better-allocate-their-currently-available-water-resources-and-prepare-for-next-years-potential-droughts-in-advance-eg.-by-pooling-water-from-elsewhere.}{%
+\subsubsection{1. Being able to reasonably estimate the severity of
+drought for a given year for each county can help the counties better
+allocate their currently available water resources and prepare for next
+year's potential droughts in advance (eg. by pooling water from
+elsewhere).}\label{being-able-to-reasonably-estimate-the-severity-of-drought-for-a-given-year-for-each-county-can-help-the-counties-better-allocate-their-currently-available-water-resources-and-prepare-for-next-years-potential-droughts-in-advance-eg.-by-pooling-water-from-elsewhere.}}
+
+\hypertarget{building-such-a-model-and-fitting-it-to-available-data-can-help-us-better-identify-potential-contributing-factors-to-droughts.-we-can-then-provide-direction-for-further-research-to-identify-triggers-of-droughts-and-potentially-reduce-the-number-and-severity-of-future-droughts-by-targeting-specific-significant-factors.}{%
+\subsubsection{2. Building such a model and fitting it to available data
+can help us better identify potential contributing factors to droughts.
+We can then provide direction for further research to identify triggers
+of droughts and potentially reduce the number and severity of future
+droughts by targeting specific significant
+factors.}\label{building-such-a-model-and-fitting-it-to-available-data-can-help-us-better-identify-potential-contributing-factors-to-droughts.-we-can-then-provide-direction-for-further-research-to-identify-triggers-of-droughts-and-potentially-reduce-the-number-and-severity-of-future-droughts-by-targeting-specific-significant-factors.}}
+
+    \hypertarget{key-findings-significance}{%
+\subsection{Key findings \&
+significance:}\label{key-findings-significance}}
+
+\hypertarget{using-our-machine-learning-model-we-were-able-to-predict-drought-levels-for-different-counties-with-confidence-for-the-year-2016-when-given-the-required-historical-data-for-periods-before-2015.-given-this-result-we-expect-the-model-to-accurately-predict-drought-levels-or-future-years-as-well.---rather-than-using-conventional-means-of-predicting-characteristics-of-future-droughts-such-as-using-geological-conditions-to-predict-the-regions-most-susceptible-to-drought-our-results-suggest-that-we-may-have-found-an-alternative-method.-using-data-that-is-specific-to-each-county-a-distribution-can-be-generated-that-closely-resembles-the-actual-distribution-of-percentage-values-for-various-ranges-of-drought-severities.---during-the-model-development-process-we-found-that-the-countys-working-population-distribution-across-different-industries-contributed-the-most-______-to-the-level-of-droughts.}{%
+\subsubsection{\texorpdfstring{- Using our machine learning model, we
+were able to predict drought levels for different counties (with
+\textbf{\emph{\% confidence) for the year 2016 when given the required
+historical data for periods before 2015. Given this result, we expect
+the model to accurately predict drought levels or future years as well.
+\#\#\# - Rather than using conventional means of predicting
+characteristics of future droughts (such as using geological conditions
+to predict the regions most susceptible to drought), our results suggest
+that we may have found an alternative method. Using data that is
+specific to each county, a distribution can be generated that closely
+resembles the actual distribution of percentage values for various
+ranges of drought severities. \#\#\# - During the model development
+process, we found that the county's working population distribution
+across different industries contributed the most (}}\_\_\_\_\_\_) to the
+level of
+droughts.}{- Using our machine learning model, we were able to predict drought levels for different counties (with \% confidence) for the year 2016 when given the required historical data for periods before 2015. Given this result, we expect the model to accurately predict drought levels or future years as well. \#\#\# - Rather than using conventional means of predicting characteristics of future droughts (such as using geological conditions to predict the regions most susceptible to drought), our results suggest that we may have found an alternative method. Using data that is specific to each county, a distribution can be generated that closely resembles the actual distribution of percentage values for various ranges of drought severities. \#\#\# - During the model development process, we found that the county's working population distribution across different industries contributed the most (\_\_\_\_\_\_) to the level of droughts.}}\label{using-our-machine-learning-model-we-were-able-to-predict-drought-levels-for-different-counties-with-confidence-for-the-year-2016-when-given-the-required-historical-data-for-periods-before-2015.-given-this-result-we-expect-the-model-to-accurately-predict-drought-levels-or-future-years-as-well.---rather-than-using-conventional-means-of-predicting-characteristics-of-future-droughts-such-as-using-geological-conditions-to-predict-the-regions-most-susceptible-to-drought-our-results-suggest-that-we-may-have-found-an-alternative-method.-using-data-that-is-specific-to-each-county-a-distribution-can-be-generated-that-closely-resembles-the-actual-distribution-of-percentage-values-for-various-ranges-of-drought-severities.---during-the-model-development-process-we-found-that-the-countys-working-population-distribution-across-different-industries-contributed-the-most-______-to-the-level-of-droughts.}}
+
+    \hypertarget{imports-libraries}{%
+\paragraph{Imports libraries}\label{imports-libraries}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+         \PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{formula}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{smf}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LinearRegression}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+         \PY{k+kn}{import} \PY{n+nn}{json}
+         \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{n}{array}
+         \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+         \PY{k+kn}{import} \PY{n+nn}{keras}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\end{Verbatim}
+
+
+    \hypertarget{feed-tensors-with-chemicals-data-earnings-data-industry_occupation-data.}{%
+\subsubsection{Feed Tensors with chemicals data, earnings data,
+industry\_occupation
+data.}\label{feed-tensors-with-chemicals-data-earnings-data-industry_occupation-data.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{chem\PYZus{}2.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{chem\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{drought.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{drought\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{industry\PYZus{}occupation.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{indus\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{earnings.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{earning\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+             \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{fip} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{chem\PYZus{}data} \PY{o+ow}{or} \PY{n}{year} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{chem\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{continue}
+                 \PY{k}{if} \PY{n}{fip} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{indus\PYZus{}data} \PY{o+ow}{or} \PY{n}{year} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{indus\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{continue}
+                 \PY{k}{if} \PY{n}{fip} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{earning\PYZus{}data} \PY{o+ow}{or} \PY{n}{year} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{earning\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{continue}
+         
+                 \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{fip}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{data}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{chem\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{)}
+         
+                 \PY{k}{for} \PY{n}{data123} \PY{o+ow}{in} \PY{n}{indus\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{:}
+                     \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{data123}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{k}{for} \PY{n}{data123} \PY{o+ow}{in} \PY{n}{earning\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{if} \PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{data123}\PY{p}{,} \PY{n+nb}{str}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{data123}  \PY{o}{=} \PY{n}{data123}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                     \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{data123}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{n}{label} \PY{o}{=} \PY{n}{drought\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}
+         
+                 \PY{k}{if} \PY{n+nb}{int}\PY{p}{(}\PY{n}{year}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2015}\PY{p}{:}
+                     \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{test\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         
+         \PY{n}{mean} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{std} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{train\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{test\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(train\PYZus{}data)}
+         \PY{c+c1}{\PYZsh{}print(test\PYZus{}data)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}length}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{dim} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{get\PYZus{}length}\PY{p}{(}\PY{n}{indus\PYZus{}data}\PY{p}{)} \PY{o}{+} \PY{n}{get\PYZus{}length}\PY{p}{(}\PY{n}{earning\PYZus{}data}\PY{p}{)} \PY{o}{+} \PY{n}{get\PYZus{}length}\PY{p}{(}\PY{n}{chem\PYZus{}data}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{model} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{Sequential}\PY{p}{(}\PY{p}{[}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim} \PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{,}
+                                \PY{n}{input\PYZus{}shape}\PY{o}{=}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+             \PY{p}{]}\PY{p}{)}
+             \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{RMSPropOptimizer}\PY{p}{(}\PY{l+m+mf}{0.001}\PY{p}{)}
+             \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{n}{optimizer}\PY{o}{=}\PY{n}{optimizer}\PY{p}{,}
+                         \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mae}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{acc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{model}
+         
+         \PY{n}{model} \PY{o}{=} \PY{n}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}
+         \PY{n}{EPOCHS} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{early\PYZus{}stop} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{k}{class} \PY{n+nc}{PrintDot}\PY{p}{(}\PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{Callback}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{on\PYZus{}epoch\PYZus{}end}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{epoch}\PY{p}{,} \PY{n}{logs}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{epoch} \PY{o}{\PYZpc{}} \PY{l+m+mi}{100} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{history} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{EPOCHS}\PY{p}{,}
+                             \PY{n}{validation\PYZus{}split}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
+                             \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{early\PYZus{}stop}\PY{p}{,} \PY{n}{PrintDot}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         
+         \PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Abs Error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Train Loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Val loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}
+         
+         
+         
+         
+         \PY{n}{test\PYZus{}predictions} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{,} \PY{n}{test\PYZus{}predictions}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True Values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predictions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{equal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         
+         \PY{n}{error} \PY{o}{=} \PY{n}{test\PYZus{}predictions} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{error}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Prediction Error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[  3.60270000e+04   5.00000000e-01   7.00000000e-01 {\ldots},   1.23190000e+04
+    2.59770000e+04   6.66440000e+04]
+ [  6.06500000e+03   7.50000000e-01   3.20000000e+00 {\ldots},   1.63460000e+04
+    2.17100000e+04   6.41580000e+04]
+ [  4.20790000e+04   7.50000000e-01   7.00000000e-01 {\ldots},   1.35020000e+04
+    2.22720000e+04   5.21560000e+04]
+ {\ldots}, 
+ [  4.20210000e+04   1.00000000e-01   7.00000000e-01 {\ldots},   1.13320000e+04
+    2.14840000e+04   4.67600000e+04]
+ [  4.20270000e+04   1.00000000e-01   5.00000000e-01 {\ldots},   1.20250000e+04
+    2.17910000e+04   4.87310000e+04]
+ [  2.12270000e+04   5.00000000e-01   5.00000000e+00 {\ldots},   1.21560000e+04
+    1.92740000e+04   4.14500000e+04]]
+[[ 0.46182861 -0.21997535 -0.30131383 {\ldots}, -0.54252738  0.76214464
+   1.09263499]
+ [-1.59175401 -0.15924512  0.5754385  {\ldots},  0.85406887 -0.55873348
+   0.87084531]
+ [ 0.8766301  -0.15924512 -0.30131383 {\ldots}, -0.13225339 -0.38476265
+  -0.19991885]
+ {\ldots}, 
+ [ 0.8726548  -0.31714372 -0.30131383 {\ldots}, -0.88482698 -0.62869327
+  -0.68132557]
+ [ 0.87306604 -0.31714372 -0.37145402 {\ldots}, -0.64448896 -0.53365939
+  -0.50548186]
+ [-0.55255704 -0.21997535  1.20670017 {\ldots}, -0.5990571  -1.31281341
+  -1.15505976]]
+
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Layer (type)                 Output Shape              Param \#   
+=================================================================
+dense\_76 (Dense)             (None, 48)                2352      
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_77 (Dense)             (None, 48)                2352      
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_78 (Dense)             (None, 6)                 294       
+=================================================================
+Total params: 4,998
+Trainable params: 4,998
+Non-trainable params: 0
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{feed-tensors-with-chemical-data}{%
+\subsubsection{Feed tensors with chemical
+data}\label{feed-tensors-with-chemical-data}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{chem\PYZus{}2.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{chem\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{drought.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{drought\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{counter} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+             \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{fip} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{chem\PYZus{}data} \PY{o+ow}{or} \PY{n}{year} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{chem\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{continue}
+                 \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{fip}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{counter} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 \PY{n}{data}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{chem\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{)}
+         
+                 \PY{n}{label} \PY{o}{=} \PY{n}{drought\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}
+         
+                 \PY{k}{if} \PY{n+nb}{int}\PY{p}{(}\PY{n}{year}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2015}\PY{p}{:}
+                     \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{test\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         
+         \PY{n}{mean} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{std} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{train\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{test\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(train\PYZus{}data)}
+         \PY{c+c1}{\PYZsh{}print(test\PYZus{}data)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}length}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{dim} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{get\PYZus{}length}\PY{p}{(}\PY{n}{chem\PYZus{}data}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{model} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{Sequential}\PY{p}{(}\PY{p}{[}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim} \PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{,}
+                                \PY{n}{input\PYZus{}shape}\PY{o}{=}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+             \PY{p}{]}\PY{p}{)}
+             \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{RMSPropOptimizer}\PY{p}{(}\PY{l+m+mf}{0.001}\PY{p}{)}
+             \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{n}{optimizer}\PY{o}{=}\PY{n}{optimizer}\PY{p}{,}
+                         \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mae}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{acc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{model}
+         
+         \PY{n}{model} \PY{o}{=} \PY{n}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}
+         \PY{n}{EPOCHS} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{early\PYZus{}stop} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{k}{class} \PY{n+nc}{PrintDot}\PY{p}{(}\PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{Callback}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{on\PYZus{}epoch\PYZus{}end}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{epoch}\PY{p}{,} \PY{n}{logs}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{epoch} \PY{o}{\PYZpc{}} \PY{l+m+mi}{100} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{history} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{EPOCHS}\PY{p}{,}
+                             \PY{n}{validation\PYZus{}split}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
+                             \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{early\PYZus{}stop}\PY{p}{,} \PY{n}{PrintDot}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         
+         \PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Abs Error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Train Loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Val loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}
+         
+         
+         
+         
+         \PY{n}{test\PYZus{}predictions} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{,} \PY{n}{test\PYZus{}predictions}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True Values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predictions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{equal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         
+         \PY{n}{error} \PY{o}{=} \PY{n}{test\PYZus{}predictions} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{error}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Prediction Error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[  2.01590000e+04   0.00000000e+00   0.00000000e+00 {\ldots},   1.90000000e+00
+    2.50000000e+01   5.60000000e+00]
+ [  4.20550000e+04   7.50000000e-01   5.00000000e-01 {\ldots},   9.30000000e-01
+    4.02500000e+01   3.96300000e+01]
+ [  2.90850000e+04   0.00000000e+00   0.00000000e+00 {\ldots},   0.00000000e+00
+    0.00000000e+00   0.00000000e+00]
+ {\ldots}, 
+ [  2.12150000e+04   0.00000000e+00   0.00000000e+00 {\ldots},   0.00000000e+00
+    2.09400000e+01   1.07400000e+01]
+ [  2.12270000e+04   5.00000000e-01   5.00000000e+00 {\ldots},   2.20000000e+00
+    4.23400000e+01   3.89200000e+01]
+ [  5.30190000e+04   2.84000000e+01   5.00000000e-01 {\ldots},   1.40000000e-01
+    2.18800000e+01   4.28000000e+00]]
+[[-0.68885611 -0.25943519 -0.55535712 {\ldots},  0.5950365   0.05240832
+  -0.39937775]
+ [ 0.91505234 -0.10651002 -0.35710331 {\ldots}, -0.02470081  0.61757405
+   1.38032159]
+ [-0.03501583 -0.25943519 -0.55535712 {\ldots}, -0.61888195 -0.87409287
+  -0.69224628]
+ {\ldots}, 
+ [-0.61150283 -0.25943519 -0.55535712 {\ldots}, -0.61888195 -0.09805547
+  -0.13056627]
+ [-0.61062382 -0.15748508  1.42718094 {\ldots},  0.78670783  0.69502955
+   1.34319004]
+ [ 1.71817858  5.53133145 -0.35710331 {\ldots}, -0.52943533 -0.06321902
+  -0.46841104]]
+
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Layer (type)                 Output Shape              Param \#   
+=================================================================
+dense\_79 (Dense)             (None, 7)                 56        
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_80 (Dense)             (None, 7)                 56        
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_81 (Dense)             (None, 6)                 48        
+=================================================================
+Total params: 160
+Trainable params: 160
+Non-trainable params: 0
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{feed-tensors-with-earnings-data}{%
+\subsubsection{Feed tensors with earnings
+data}\label{feed-tensors-with-earnings-data}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{drought.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{drought\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{earnings.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{earning\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+             \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{fip} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{earning\PYZus{}data} \PY{o+ow}{or} \PY{n}{year} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{earning\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{continue}
+         
+                 \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{fip}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{k}{for} \PY{n}{data123} \PY{o+ow}{in} \PY{n}{earning\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{if} \PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{data123}\PY{p}{,} \PY{n+nb}{str}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{data123}  \PY{o}{=} \PY{n}{data123}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                     \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{data123}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{n}{label} \PY{o}{=} \PY{n}{drought\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}
+         
+                 \PY{k}{if} \PY{n+nb}{int}\PY{p}{(}\PY{n}{year}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2015}\PY{p}{:}
+                     \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{test\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         
+         \PY{n}{mean} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{std} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{train\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{test\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(train\PYZus{}data)}
+         \PY{c+c1}{\PYZsh{}print(test\PYZus{}data)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}length}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{dim} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{get\PYZus{}length}\PY{p}{(}\PY{n}{earning\PYZus{}data}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{model} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{Sequential}\PY{p}{(}\PY{p}{[}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim} \PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{,}
+                                \PY{n}{input\PYZus{}shape}\PY{o}{=}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+             \PY{p}{]}\PY{p}{)}
+             \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{RMSPropOptimizer}\PY{p}{(}\PY{l+m+mf}{0.001}\PY{p}{)}
+             \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{n}{optimizer}\PY{o}{=}\PY{n}{optimizer}\PY{p}{,}
+                         \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mae}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{model}
+         
+         \PY{n}{model} \PY{o}{=} \PY{n}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}
+         \PY{n}{EPOCHS} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{early\PYZus{}stop} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{k}{class} \PY{n+nc}{PrintDot}\PY{p}{(}\PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{Callback}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{on\PYZus{}epoch\PYZus{}end}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{epoch}\PY{p}{,} \PY{n}{logs}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{epoch} \PY{o}{\PYZpc{}} \PY{l+m+mi}{100} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{history} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{EPOCHS}\PY{p}{,}
+                             \PY{n}{validation\PYZus{}split}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
+                             \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{early\PYZus{}stop}\PY{p}{,} \PY{n}{PrintDot}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         
+         \PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Abs Error [1000]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Train Loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Val loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}
+         
+         
+         
+         
+         \PY{n}{test\PYZus{}predictions} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{,} \PY{n}{test\PYZus{}predictions}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True Values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predictions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{equal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         
+         \PY{n}{error} \PY{o}{=} \PY{n}{test\PYZus{}predictions} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{error}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Prediction Error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[39025 36378 30511 {\ldots}, 12859 24920 50700]
+ [36027 40225 29643 {\ldots}, 12319 25977 66644]
+ [24015 41020 25983 {\ldots}, 14357 28686 69671]
+ {\ldots}, 
+ [ 2188 38618 52344 {\ldots}, 26103 30000 47875]
+ [42027 31217 32959 {\ldots}, 12025 21791 48731]
+ [21227 27528 24345 {\ldots}, 12156 19274 41450]]
+[[ 0.57230931  0.21305672 -0.15006474 {\ldots}, -0.22351801  0.36555964
+  -0.11531725]
+ [ 0.37294384  0.79015795 -0.21583354 {\ldots}, -0.40122807  0.62931708
+   1.27254449]
+ [-0.425848    0.90941854 -0.49315361 {\ldots},  0.26946286  1.30530469
+   1.53603279]
+ {\ldots}, 
+ [-1.87733232  0.54908655  1.50423283 {\ldots},  4.13498573  1.63319236
+  -0.36122225]
+ [ 0.77194077 -0.56116201  0.03542147 {\ldots}, -0.49798132 -0.41523225
+  -0.28671086]
+ [-0.61124857 -1.11456114 -0.61726571 {\ldots}, -0.45487018 -1.04330933
+  -0.92049293]]
+
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Layer (type)                 Output Shape              Param \#   
+=================================================================
+dense\_82 (Dense)             (None, 28)                812       
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_83 (Dense)             (None, 28)                812       
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_84 (Dense)             (None, 6)                 174       
+=================================================================
+Total params: 1,798
+Trainable params: 1,798
+Non-trainable params: 0
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{feed-tensors-with-industry_occupation}{%
+\subsubsection{Feed tensors with
+industry\_occupation}\label{feed-tensors-with-industry_occupation}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{drought.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{drought\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{industry\PYZus{}occupation.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{indus\PYZus{}data} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+         
+         
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+             \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{drought\PYZus{}data}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{fip} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{indus\PYZus{}data} \PY{o+ow}{or} \PY{n}{year} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{indus\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{continue}
+                 \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{fip}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{k}{for} \PY{n}{data123} \PY{o+ow}{in} \PY{n}{indus\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{:}
+                     \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{data123}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{n}{label} \PY{o}{=} \PY{n}{drought\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}
+         
+                 \PY{k}{if} \PY{n+nb}{int}\PY{p}{(}\PY{n}{year}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2015}\PY{p}{:}
+                     \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{test\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+                     \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         
+         \PY{n}{mean} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{std} \PY{o}{=} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{train\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{test\PYZus{}data} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(train\PYZus{}data)}
+         \PY{c+c1}{\PYZsh{}print(test\PYZus{}data)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}length}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{fip} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{year} \PY{o+ow}{in} \PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{map\PYZus{}data}\PY{p}{[}\PY{n}{fip}\PY{p}{]}\PY{p}{[}\PY{n}{year}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{dim} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{get\PYZus{}length}\PY{p}{(}\PY{n}{indus\PYZus{}data}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{model} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{Sequential}\PY{p}{(}\PY{p}{[}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim} \PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{,}
+                                \PY{n}{input\PYZus{}shape}\PY{o}{=}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{n}{dim}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{)}\PY{p}{,}
+             \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}
+             \PY{p}{]}\PY{p}{)}
+             \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{RMSPropOptimizer}\PY{p}{(}\PY{l+m+mf}{0.001}\PY{p}{)}
+             \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{n}{optimizer}\PY{o}{=}\PY{n}{optimizer}\PY{p}{,}
+                         \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mae}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{model}
+         
+         \PY{n}{model} \PY{o}{=} \PY{n}{build\PYZus{}model}\PY{p}{(}\PY{p}{)}
+         \PY{n}{EPOCHS} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{early\PYZus{}stop} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{k}{class} \PY{n+nc}{PrintDot}\PY{p}{(}\PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{Callback}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{on\PYZus{}epoch\PYZus{}end}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{epoch}\PY{p}{,} \PY{n}{logs}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{epoch} \PY{o}{\PYZpc{}} \PY{l+m+mi}{100} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{history} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{n}{EPOCHS}\PY{p}{,}
+                             \PY{n}{validation\PYZus{}split}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
+                             \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{early\PYZus{}stop}\PY{p}{,} \PY{n}{PrintDot}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         
+         \PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Abs Error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Train Loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{epoch}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{history}\PY{o}{.}\PY{n}{history}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}mean\PYZus{}absolute\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Val loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}history}\PY{p}{(}\PY{n}{history}\PY{p}{)}
+         
+         
+         
+         
+         \PY{n}{test\PYZus{}predictions} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{test\PYZus{}labels}\PY{p}{,} \PY{n}{test\PYZus{}predictions}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True Values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predictions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{equal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         
+         \PY{n}{error} \PY{o}{=} \PY{n}{test\PYZus{}predictions} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{error}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Prediction Error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 42055  72077   2261 {\ldots},   5341   4293   5406]
+ [ 39025 102650    289 {\ldots},   9623   5514   3567]
+ [ 36027 144424   1998 {\ldots},  12696   7951   6797]
+ {\ldots}, 
+ [ 42027  76548    738 {\ldots},   9823   3547   3006]
+ [ 36065 101094   1758 {\ldots},   8597   5029   7895]
+ [ 21227  62992    466 {\ldots},   7248   2735   1915]]
+[[ 0.78549348 -0.3468718   0.01197859 {\ldots}, -0.37371537 -0.26346788
+  -0.21120297]
+ [ 0.58784962 -0.2392516  -0.41206655 {\ldots}, -0.23515064 -0.18727355
+  -0.37234446]
+ [ 0.39229309 -0.09220271 -0.0445751  {\ldots}, -0.13570892 -0.03519691
+  -0.08931727]
+ {\ldots}, 
+ [ 0.78366707 -0.33113341 -0.31551672 {\ldots}, -0.22867867 -0.31002067
+  -0.42150182]
+ [ 0.39477179 -0.24472889 -0.09618303 {\ldots}, -0.26835181 -0.21753911
+   0.00689445]
+ [-0.57309606 -0.37885196 -0.3740057  {\ldots}, -0.3120052  -0.36069208
+  -0.51710017]]
+
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}
+{\ldots}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Layer (type)                 Output Shape              Param \#   
+=================================================================
+dense\_85 (Dense)             (None, 15)                240       
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_86 (Dense)             (None, 15)                240       
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_87 (Dense)             (None, 6)                 96        
+=================================================================
+Total params: 576
+Trainable params: 576
+Non-trainable params: 0
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
