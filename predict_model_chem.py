@@ -105,7 +105,6 @@ plot_history(history)
 
 
 
-
 test_predictions = model.predict(test_data).flatten()
 plt.scatter(test_labels, test_predictions)
 plt.xlabel('True Values [1000$]')
