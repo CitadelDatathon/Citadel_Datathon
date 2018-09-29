@@ -11,40 +11,21 @@ with open('chem_2.json') as f:
 with open('drought.json') as f:
     drought_data = json.load(f)
 
-with open('industry_occupation.json') as f:
-    indus_data = json.load(f)
-
-with open('earnings.json') as f:
-    earning_data = json.load(f)
-
-
-
 train_data = []
 train_labels = []
 
 test_data = []
 test_labels = []
 
+counter = 0
 for fip in drought_data:
     for year in drought_data:
         if fip not in chem_data or year not in chem_data[fip]:
             continue
-        if fip not in indus_data or year not in indus_data[fip]:
-            continue
-        if fip not in earning_data or year not in earning_data[fip]:
-            continue
-
         data = []
         data.append(int(fip))
+        counter += 1
         data.extend(chem_data[fip][year])
-
-        for data123 in indus_data[fip][year]:
-            data.append(int(data123))
-
-        for data123 in earning_data[fip][year]:
-            if isinstance(data123, str):
-                data123  = data123.replace('+', '').replace(',', '').replace('-', '')
-            data.append(int(data123))
 
         label = drought_data[fip][year]
 
@@ -78,7 +59,7 @@ def get_length(map_data):
         for year in map_data[fip]:
             return len(map_data[fip][year])
 
-dim = 1 + get_length(indus_data) + get_length(earning_data) + get_length(chem_data)
+dim = 1 + get_length(chem_data)
 
 def build_model():
     model = keras.Sequential([
