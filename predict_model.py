@@ -17,9 +17,6 @@ with open('industry_occupation.json') as f:
 with open('earnings.json') as f:
     earning_data = json.load(f)
 
-with open('earnings.json') as f:
-    earning_data = json.load(f)
-
 
 
 train_data = []
@@ -83,7 +80,7 @@ def get_length(map_data):
         for year in map_data[fip]:
             return len(map_data[fip][year])
 
-dim = 1 + get_length(indus_data) + get_length(earning_data)
+dim = 1 + get_length(indus_data) + get_length(earning_data) + get_length(chem_data)
 
 def build_model():
     model = keras.Sequential([
