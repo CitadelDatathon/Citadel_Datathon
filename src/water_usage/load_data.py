@@ -17,5 +17,5 @@ populations = df['population']
 print(fips)
 print(populations)
 
-df_group = df.groupby(E'fips').get_group(0)
+df_group = df.groupby().get_group(0)
 print(df_group)

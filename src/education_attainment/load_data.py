@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 
 education_attainment_file = 'education_attainment.csv'
 
@@ -10,12 +11,13 @@ result_headers = ['less_than_hs','hs_diploma','some_college_or_associates','coll
 df_withNA =  pd.read_csv(education_attainment_file, encoding='latin-1')
 
 df = df_withNA.dropna()
-print(df)
+
 
 countys = df['county']
 fips = df['fips']
 years = df['year']
 
+print(fips)
 
 
 def education_attainment_fips_year(fips, year):
@@ -23,7 +25,6 @@ def education_attainment_fips_year(fips, year):
         print("2012-2016")
         year = "2012-2016"
     selected = df.loc[(df['fips'] == fips) & (df['year'] == year)]
-    print(df)
-    print(selected)
     return selected
 
+# education_attainment_fips_year(1003, 1970)
